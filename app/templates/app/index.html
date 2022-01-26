@@ -9,6 +9,24 @@
   </head>
 
   <body>
-    <div>worker test</div>
+    <h1>Django と RQ で非同期処理を実装する</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>url</th>
+          <th>result</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for obj in object_list %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>{{ obj.url }}</td>
+          <td>{{ obj.result }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
   </body>
 </html>

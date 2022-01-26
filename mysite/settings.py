@@ -1,6 +1,7 @@
 from pathlib import Path
 from decouple import config
 from dj_database_url import parse as dburl
+import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-6-%f19er4j5*hetjvk-d_5%60(zih&_af0=8jq#=s9t0ffl6ci'
@@ -15,7 +16,21 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'app',
+    'django_rq',
 ]
+
+RQ_QUEUES = {
+    'default': {
+        'HOST': 'localhost',
+        'PORT': 6379,
+        'DB': 0,
+        'PASSWORD': '',
+        'DEFAULT_TIMEOUT': 7200,
+        'URL': os.getenv('REDISTOGO_URL', 'redis://localhost:6379/0'),
+    },
+}
+
+RQ_API_TOKEN = 'eigostation'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
